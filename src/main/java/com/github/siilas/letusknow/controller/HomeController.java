@@ -1,4 +1,4 @@
-package com.github.siiilas.letusknow.controller;
+package com.github.siilas.letusknow.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

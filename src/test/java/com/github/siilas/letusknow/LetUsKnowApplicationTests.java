@@ -1,4 +1,4 @@
-package com.github.siiilas.letusknow;
+package com.github.siilas.letusknow;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
