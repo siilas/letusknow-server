@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/questao")
-public class QuestaoController {
+@RequestMapping("/resposta")
+public class RespostaController {
 
     @RequestMapping
     public String index() {
