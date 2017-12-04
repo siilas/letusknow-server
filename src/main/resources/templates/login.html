@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-	<head th:replace="fragments/header :: header"></head>
+	<head th:replace="fragments/header :: header">
+		<meta charset="UTF-8" />
+	</head>
 	<body>
-		<div th:replace="fragments/menu :: menu"></div>
-		
 		<div class="container">
 			<form class="form-signin">
 				<h2 class="form-signin-heading">LetUsKnow</h2>
 				
-				<label for="inputEmail" class="sr-only">Usu·rio</label>
-				<input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usu·rio" required autofocus />
+				<label for="usuario" class="sr-only">Usu√°rio</label>
+				<input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usu√°rio" required="required" autofocus="autofocus" />
 				
-				<label for="inputPassword" class="sr-only">Senha</label>
-				<input type="password" id="senha" name="name" class="form-control" placeholder="Senha" required />
+				<label for="senha" class="sr-only">Senha</label>
+				<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required="required" />
 				
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 			</form>			
