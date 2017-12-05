@@ -29,7 +29,7 @@ public class Questao implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 30)
+    @Size(max = 100)
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
 

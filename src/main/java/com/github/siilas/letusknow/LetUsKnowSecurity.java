@@ -26,7 +26,7 @@ public class LetUsKnowSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/questao/**", "/usuario/**").hasAnyRole("ADMIN")
+                .antMatchers("/questao", "/usuario").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

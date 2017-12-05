@@ -29,7 +29,7 @@ public class Resposta implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 30)
+    @Size(max = 60)
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
 

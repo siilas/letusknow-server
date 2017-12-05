@@ -6,4 +6,6 @@ import com.github.siilas.letusknow.model.Resposta;
 
 public interface RespostaDao extends CrudRepository<Resposta, Long> {
 
+    Resposta findByDescricao(String descricao);
+
 }

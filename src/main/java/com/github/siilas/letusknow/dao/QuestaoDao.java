@@ -6,4 +6,6 @@ import com.github.siilas.letusknow.model.Questao;
 
 public interface QuestaoDao extends CrudRepository<Questao, Long> {
 
+    Questao findByDescricao(String descricao);
+
 }
