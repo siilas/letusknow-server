@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.github.siilas.letusknow.vo.RespostaVO;
+
 @Entity
 @Table(name = "RESPOSTA")
 public class Resposta implements Serializable {
@@ -62,6 +64,9 @@ public class Resposta implements Serializable {
     }
 
     public Long getVotos() {
+        if (votos == null) {
+            votos = 0L;
+        }
         return votos;
     }
 
@@ -107,6 +112,14 @@ public class Resposta implements Serializable {
                 .append(votos)
                 .append(questaoId)
                 .toHashCode();
+    }
+
+    public RespostaVO toVO() {
+        RespostaVO resposta = new RespostaVO();
+        resposta.setId(getId());
+        resposta.setDescricao(getDescricao());
+        resposta.setVotos(getVotos());
+        return resposta;
     }
 
 }

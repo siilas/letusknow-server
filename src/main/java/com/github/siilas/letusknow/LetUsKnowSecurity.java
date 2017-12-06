@@ -25,7 +25,7 @@ public class LetUsKnowSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/ws").permitAll()
+                .antMatchers("/", "/buscar-questoes", "/ws/**").permitAll()
                 .antMatchers("/questao", "/usuario").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

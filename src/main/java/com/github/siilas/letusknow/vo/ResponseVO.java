@@ -1,6 +1,6 @@
 package com.github.siilas.letusknow.vo;
 
-public class AjaxResponse {
+public class ResponseVO {
 
     private boolean sucesso;
     private String mensagem;

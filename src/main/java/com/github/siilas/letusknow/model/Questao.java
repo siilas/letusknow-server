@@ -88,7 +88,13 @@ public class Questao implements Serializable {
     }
 
     public QuestaoVO toVO() {
-        return null;
+        QuestaoVO questao = new QuestaoVO();
+        questao.setId(getId());
+        questao.setDescricao(getDescricao());
+        for (Resposta resposta : getRespostas()) {
+            questao.getRespostas().add(resposta.toVO());
+        }
+        return questao;
     }
 
 }

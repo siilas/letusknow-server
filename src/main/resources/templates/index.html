@@ -4,10 +4,24 @@
 		<meta charset="UTF-8" />
 	</head>
 	<body>
+		<script type="text/javascript" src="/js/Chart.bundle.min.js"></script>
+		<script type="text/javascript" src="/js/Chart.min.js"></script>
+		<script type="text/javascript" src="/js/index.js"></script>
+		
 		<div th:replace="fragments/menu :: menu"></div>
 		
 		<div class="container">
-		
+			<div class="row">
+				<main class="col-xl pt-4 mx-auto">
+					<div class="row justify-content-center">
+						<h1>Votos</h1>
+					</div>
+					
+					<div class="row justify-content-center">
+						<canvas id="questoesChart"></canvas>
+					</div>
+				</main>
+			</div>
 		</div>
 		
 		<div th:replace="fragments/footer :: footer"></div>

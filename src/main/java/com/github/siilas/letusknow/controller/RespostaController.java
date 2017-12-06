@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.siilas.letusknow.dao.RespostaDao;
-import com.github.siilas.letusknow.vo.AjaxResponse;
+import com.github.siilas.letusknow.vo.AjaxVO;
 
 @Controller
 @RequestMapping("/resposta")
@@ -18,10 +18,9 @@ public class RespostaController {
 
     @ResponseBody
     @GetMapping("/excluir")
-    public AjaxResponse excluir(Long id) {
+    public AjaxVO excluir(Long id) {
         respostaDao.delete(id);
-        AjaxResponse response = new AjaxResponse();
-        response.setSucesso(true);
+        AjaxVO response = new AjaxVO();
         response.setMensagem("Resposta removida com sucesso!");
         return response;
     }
