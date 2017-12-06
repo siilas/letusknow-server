@@ -30,7 +30,7 @@
 					  	
 					  	<div class="form-group">
 					    	<label for="descricao">Descrição</label>
-					    	<input type="text" class="form-control" id="descricao" name="descricao" th:value="${questao.descricao}" />
+					    	<input type="text" class="form-control" id="descricao" name="descricao" th:value="${questao.descricao}" required="required" autofocus="autofocus" />
 					  	</div>
 					  	
 					  	<table id="questoes-table" class="table">
@@ -42,7 +42,7 @@
 							  	<th:block th:each="resposta,iter : ${questao.respostas}">
 							  		<tr>
 							  			<td scope="row">
-							  				<input type="text" class="form-control" th:name="${'respostas[' + iter.index + '].descricao'}" th:value="${resposta.descricao}" />
+							  				<input type="text" class="form-control" th:name="${'respostas[' + iter.index + '].descricao'}" th:value="${resposta.descricao}" required="required" />
 							  			</td>
 							  			<td>
 							  				<input type="hidden" th:name="${'respostas[' + iter.index + '].id'}" th:value="${resposta.id}" />

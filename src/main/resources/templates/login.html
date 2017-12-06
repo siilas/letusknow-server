@@ -6,7 +6,11 @@
 	<body>
 		<div class="container">
 			<form class="form-signin" action="/login" method="POST">
-				<h2 class="form-signin-heading">LetUsKnow</h2>
+				<div class="row">
+					<img src="/images/logo.png" class="rounded mx-auto d-block" alt="LetUsKnow - App de pesquisas" />
+					
+					<h2 class="form-signin-heading mx-auto">LetUsKnow</h2>
+				</div>
 				
 				<div th:if="${message}">
 					<div class="alert alert-danger" role="alert">
