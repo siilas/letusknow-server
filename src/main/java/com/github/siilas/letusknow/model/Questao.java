@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.github.siilas.letusknow.vo.QuestaoVO;
+
 @Entity
 @Table(name = "QUESTAO")
 public class Questao implements Serializable {
@@ -83,5 +85,10 @@ public class Questao implements Serializable {
                 .append(descricao)
                 .toHashCode();
     }
+
+	public QuestaoVO toVO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

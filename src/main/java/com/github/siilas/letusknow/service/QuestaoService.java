@@ -1,5 +1,6 @@
 package com.github.siilas.letusknow.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -10,6 +11,7 @@ import com.github.siilas.letusknow.dao.QuestaoDao;
 import com.github.siilas.letusknow.dao.RespostaDao;
 import com.github.siilas.letusknow.model.Questao;
 import com.github.siilas.letusknow.model.Resposta;
+import com.github.siilas.letusknow.vo.QuestaoVO;
 
 @Component
 public class QuestaoService {
@@ -34,12 +36,28 @@ public class QuestaoService {
                         model.setQuestao(questao);
                         model.setVotos(0L);
                         questao.getRespostas().add(model);
-                        // respostaDao.save(model);
+                        //respostaDao.save(model);
                     }
                 }
             }
             questaoDao.save(questao);
         }
     }
+
+	public List<QuestaoVO> buscarTodos() {
+		List<QuestaoVO> response = new ArrayList<>();
+		Iterable<Questao> questoes = questaoDao.findAll();
+		while (questoes.iterator().hasNext()) {
+			Questao questao = questoes.iterator().next();
+			if (questao != null) {
+				response.add(questao.toVO());
+			}
+		}
+		return response;
+	}
+
+	public void salvar(QuestaoVO questao) {
+		questaoDao.save(questao.toModel());
+	}
 
 }
