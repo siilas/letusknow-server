@@ -41,6 +41,10 @@ public class Resposta implements Serializable {
     @JoinColumn(name = "QUESTAO", insertable = false, updatable = false)
     private Questao questao;
 
+    @NotNull
+    @Column(name = "QUESTAO")
+    private Long questaoId;
+
     public Long getId() {
         return id;
     }
@@ -73,6 +77,14 @@ public class Resposta implements Serializable {
         this.questao = questao;
     }
 
+    public Long getQuestaoId() {
+        return questaoId;
+    }
+
+    public void setQuestaoId(Long questaoId) {
+        this.questaoId = questaoId;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Resposta) {
@@ -81,6 +93,7 @@ public class Resposta implements Serializable {
                     .append(id, other.id)
                     .append(descricao, other.descricao)
                     .append(votos, other.votos)
+                    .append(questaoId, other.questaoId)
                     .isEquals();
         }
         return false;
@@ -92,6 +105,7 @@ public class Resposta implements Serializable {
                 .append(id)
                 .append(descricao)
                 .append(votos)
+                .append(questaoId)
                 .toHashCode();
     }
 

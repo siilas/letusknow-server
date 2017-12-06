@@ -25,7 +25,7 @@ public class LetUsKnowSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/console").permitAll()
                 .antMatchers("/questao", "/usuario").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -37,6 +37,8 @@ public class LetUsKnowSecurity extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
                 .permitAll();
+
+        http.headers().frameOptions().disable();
     }
 
     @Autowired

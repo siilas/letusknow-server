@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,7 +37,7 @@ public class Questao implements Serializable {
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
 
-    @OneToMany(mappedBy = "questao", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "questao", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Resposta> respostas;
 
     public Long getId() {
@@ -87,7 +88,6 @@ public class Questao implements Serializable {
     }
 
     public QuestaoVO toVO() {
-        // TODO Auto-generated method stub
         return null;
     }
 

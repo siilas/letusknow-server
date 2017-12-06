@@ -32,7 +32,7 @@
 					  	<table class="table">
 							<caption class="tabela-questoes clearfix">
 								<span class="mr-4">Respostas</span>
-								<button type="button" class="btn btn-primary" title="Adicionar resposta">+</button>
+								<button type="button" class="btn btn-primary" onclick="adicionarResposta();" title="Adicionar resposta">+</button>
 							</caption>
 							<tbody>
 							  	<th:block th:each="resposta : ${questao.respostas}">
