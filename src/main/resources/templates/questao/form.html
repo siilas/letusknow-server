@@ -30,18 +30,16 @@
 					  	</div>
 					  	
 					  	<table class="table">
-							<thead>
-								<tr>
-								  <th scope="col">Resposta</th>
-								  <th scope="col">#</th>
-								</tr>
-							</thead>
+							<caption class="tabela-questoes clearfix">
+								<span class="mr-4">Respostas</span>
+								<button type="button" class="btn btn-primary" title="Adicionar resposta">+</button>
+							</caption>
 							<tbody>
-							  	<th:block th:each="resposta, iter : ${questao.respostas}">
+							  	<th:block th:each="resposta : ${questao.respostas}">
 							  		<tr>
 							  			<td th:text="${resposta}" scope="row"></td>
 							  			<td>
-							  				<input th:name="respostas[${iter.index}]" th:text="${resposta}" />
+							  				<input th:name="respostas[]" th:text="${resposta}" />
 									    	<button type="button" class="btn btn-danger">Excluir</button>
 							  			</td>
 							  		</tr>

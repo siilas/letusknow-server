@@ -35,7 +35,7 @@ public class UsuarioController {
     @GetMapping("/editar")
     public String editar(Model model, Long id) {
         model.addAttribute("usuario", usuarioDao.findOne(id));
-        return "questao/form";
+        return "usuario/form";
     }
 
     @GetMapping("/excluir")

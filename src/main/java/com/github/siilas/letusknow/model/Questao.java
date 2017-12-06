@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,8 +36,7 @@ public class Questao implements Serializable {
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
 
-    @NotNull
-    @OneToMany(mappedBy = "questao")
+    @OneToMany(mappedBy = "questao", fetch = FetchType.EAGER)
     private List<Resposta> respostas;
 
     public Long getId() {
@@ -86,9 +86,9 @@ public class Questao implements Serializable {
                 .toHashCode();
     }
 
-	public QuestaoVO toVO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public QuestaoVO toVO() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }
