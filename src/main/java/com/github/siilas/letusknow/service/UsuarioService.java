@@ -17,10 +17,10 @@ public class UsuarioService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public void criarSeNaoExistir(String username, String senha) {
-        Usuario usuario = usuarioDao.findByUsuario(username);
+        Usuario usuario = usuarioDao.findByNome(username);
         if (usuario == null) {
             usuario = new Usuario();
-            usuario.setUsuario(username);
+            usuario.setNome(username);
             usuario.setSenha(passwordEncoder.encode(senha));
             usuarioDao.save(usuario);
         }

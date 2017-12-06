@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
     @NotNull
     @Size(max = 30)
     @Column(name = "USUARIO", nullable = false)
-    private String usuario;
+    private String nome;
 
     @NotNull
     @Size(max = 60)
@@ -43,12 +43,12 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getNome() {
+        return nome;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getSenha() {
@@ -65,7 +65,7 @@ public class Usuario implements Serializable {
             Usuario other = (Usuario) obj;
             return new EqualsBuilder()
                     .append(id, other.id)
-                    .append(usuario, other.usuario)
+                    .append(nome, other.nome)
                     .append(senha, other.senha)
                     .isEquals();
         }
@@ -76,7 +76,7 @@ public class Usuario implements Serializable {
     public int hashCode() {
         return new HashCodeBuilder()
                 .append(id)
-                .append(usuario)
+                .append(nome)
                 .append(senha)
                 .toHashCode();
     }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.siilas.letusknow.dao.QuestaoDao;
 import com.github.siilas.letusknow.model.Questao;
@@ -38,6 +39,7 @@ public class QuestaoController {
         return "questao/form";
     }
 
+    @ResponseBody
     @GetMapping("/excluir")
     public String excluir(Model model, Long id) {
         questaoDao.delete(id);
@@ -50,11 +52,11 @@ public class QuestaoController {
         try {
             questaoDao.save(questao);
             model.addAttribute("message", "Questão adicionada com sucesso!");
-            return "questao/index";
+            return "redirect:/questao";
         } catch (Exception e) {
             LOGGER.error("Erro ao adicionar questão", e);
             model.addAttribute("message", "Erro ao adicionar questão!");
-            return "questao/novo";
+            return "questao/form";
         }
     }
 

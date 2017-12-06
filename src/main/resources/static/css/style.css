@@ -66,4 +66,6 @@ body {
 
 .tabela-questoes {
 	color: #212529 !important;
+	caption-side: top !important;
 }
+

@@ -2,6 +2,7 @@ package com.github.siilas.letusknow.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioDao usuarioDao;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping
     public String index(Model model) {
@@ -48,13 +52,16 @@ public class UsuarioController {
     @PostMapping("/salvar")
     public String salvar(Model model, Usuario usuario) {
         try {
+            if (usuario.getId() == null) {
+                usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+            }
             usuarioDao.save(usuario);
             model.addAttribute("message", "Usuário adicionado com sucesso!");
-            return "usuario/index";
+            return "redirect:/usuario";
         } catch (Exception e) {
             LOGGER.error("Erro ao adicionar usuário", e);
             model.addAttribute("message", "Erro ao adicionar usuário!");
-            return "usuario/novo";
+            return "usuario/form";
         }
     }
 

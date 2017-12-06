@@ -33,12 +33,12 @@ public class QuestaoService {
                     Resposta model = respostaDao.findByDescricao(resposta);
                     if (model == null) {
                         model = new Resposta();
+                        model.setDescricao(resposta);
+                        model.setQuestao(questao);
+                        model.setVotos(0L);
+                        model.setQuestaoId(questao.getId());
+                        respostaDao.save(model);
                     }
-                    model.setDescricao(resposta);
-                    model.setQuestao(questao);
-                    model.setVotos(0L);
-                    model.setQuestaoId(questao.getId());
-                    respostaDao.save(model);
                 }
             }
 
