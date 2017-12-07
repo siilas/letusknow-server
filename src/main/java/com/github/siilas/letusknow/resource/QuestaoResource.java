@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.siilas.letusknow.service.QuestaoService;
 import com.github.siilas.letusknow.vo.QuestaoVO;
 import com.github.siilas.letusknow.vo.ResponseVO;
+import com.github.siilas.letusknow.vo.VotoVO;
 
 @RestController
 @RequestMapping("/ws/questao")
@@ -25,8 +26,8 @@ public class QuestaoResource {
     }
 
     @PostMapping("/salvar")
-    public ResponseVO salvar(QuestaoVO questao) {
-        questaoService.salvar(questao);
+    public ResponseVO salvar(List<VotoVO> votos) {
+        questaoService.salvar(votos);
         ResponseVO response = new ResponseVO();
         response.setSucesso(true);
         response.setMensagem("Questões salvas com sucesso!");

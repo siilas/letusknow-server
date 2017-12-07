@@ -12,6 +12,7 @@ import com.github.siilas.letusknow.dao.RespostaDao;
 import com.github.siilas.letusknow.model.Questao;
 import com.github.siilas.letusknow.model.Resposta;
 import com.github.siilas.letusknow.vo.QuestaoVO;
+import com.github.siilas.letusknow.vo.VotoVO;
 
 @Component
 public class QuestaoService {
@@ -53,8 +54,20 @@ public class QuestaoService {
         return response;
     }
 
-    public void salvar(QuestaoVO questao) {
-        questaoDao.save(questao.toModel());
+    public void salvar(List<VotoVO> votos) {
+        if (CollectionUtils.isNotEmpty(votos)) {
+            for (VotoVO voto : votos) {
+                Questao questao = questaoDao.findOne(voto.getIdResposta());
+                if (questao != null) {
+                    for (Resposta resposta : questao.getRespostas()) {
+                        if (resposta.getId().equals(voto.getIdResposta())) {
+                            resposta.contabilizarVoto();
+                            questaoDao.save(questao);
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

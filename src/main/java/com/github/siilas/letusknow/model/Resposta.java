@@ -122,4 +122,8 @@ public class Resposta implements Serializable {
         return resposta;
     }
 
+    public void contabilizarVoto() {
+        setVotos(getVotos() + 1L);
+    }
+
 }

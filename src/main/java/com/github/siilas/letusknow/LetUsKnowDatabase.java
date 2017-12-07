@@ -3,6 +3,7 @@ package com.github.siilas.letusknow;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,12 @@ import com.github.siilas.letusknow.service.UsuarioService;
 @Configuration
 public class LetUsKnowDatabase {
 
+    @Value("${admin.user}")
+    private String user;
+
+    @Value("${admin.pass}")
+    private String pass;
+
     @Autowired
     private QuestaoService questaoService;
 
@@ -23,7 +30,7 @@ public class LetUsKnowDatabase {
     @Bean
     public CommandLineRunner criarUsuarioDefault() {
         return (args) -> {
-            usuarioService.criarSeNaoExistir("admin", "123");
+            usuarioService.criarSeNaoExistir(user, pass);
         };
     }
 
@@ -38,8 +45,8 @@ public class LetUsKnowDatabase {
                     Arrays.asList("Muita", "Pouca"));
             questaoService.criarSeNaoExistir("Há limitação de atividades devido ao seu estado de saúde atual?",
                     Arrays.asList("Sim", "Não"));
-            questaoService.criarSeNaoExistir("Qual a interferência da dor durante o seu dia-a-dia?",
-                    Arrays.asList("Muita", "Pouca"));
+            questaoService.criarSeNaoExistir("Qual a interferência da dor no seu dia-a-dia?",
+                    Arrays.asList("Interfere muito", "Interfere pouco"));
         };
     }
 
