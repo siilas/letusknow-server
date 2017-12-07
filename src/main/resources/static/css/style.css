@@ -72,3 +72,11 @@ body {
 .logo-navbar {
 	width: 24px;
 }
+
+.navbar-custom {
+	background-color: #2e3899 !important;
+}
+
+.footer-custom {
+	background-color: #2e3899 !important;
+}
