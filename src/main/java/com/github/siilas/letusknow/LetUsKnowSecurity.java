@@ -34,7 +34,8 @@ public class LetUsKnowSecurity {
         }
 
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/ws/**")
+            http.csrf().disable()
+                    .antMatcher("/ws/**")
                     .authorizeRequests()
                     .anyRequest().hasRole("USER")
                     .and()
@@ -76,6 +77,10 @@ public class LetUsKnowSecurity {
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/")
                     .permitAll();
+
+            http.headers()
+                    .frameOptions()
+                    .disable();
         }
 
     }

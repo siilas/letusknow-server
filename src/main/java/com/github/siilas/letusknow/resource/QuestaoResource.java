@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.siilas.letusknow.service.QuestaoService;
 import com.github.siilas.letusknow.vo.QuestaoVO;
 import com.github.siilas.letusknow.vo.ResponseVO;
-import com.github.siilas.letusknow.vo.VotoVO;
+import com.github.siilas.letusknow.vo.VotosVO;
 
 @RestController
 @RequestMapping("/ws/questao")
@@ -26,7 +27,7 @@ public class QuestaoResource {
     }
 
     @PostMapping("/salvar")
-    public ResponseVO salvar(List<VotoVO> votos) {
+    public ResponseVO salvar(@RequestBody VotosVO votos) {
         questaoService.salvar(votos);
         ResponseVO response = new ResponseVO();
         response.setSucesso(true);

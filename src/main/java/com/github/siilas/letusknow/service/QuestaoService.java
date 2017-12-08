@@ -3,6 +3,8 @@ package com.github.siilas.letusknow.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +15,7 @@ import com.github.siilas.letusknow.model.Questao;
 import com.github.siilas.letusknow.model.Resposta;
 import com.github.siilas.letusknow.vo.QuestaoVO;
 import com.github.siilas.letusknow.vo.VotoVO;
+import com.github.siilas.letusknow.vo.VotosVO;
 
 @Component
 public class QuestaoService {
@@ -54,15 +57,17 @@ public class QuestaoService {
         return response;
     }
 
-    public void salvar(List<VotoVO> votos) {
-        if (CollectionUtils.isNotEmpty(votos)) {
-            for (VotoVO voto : votos) {
-                Questao questao = questaoDao.findOne(voto.getIdResposta());
+    @Transactional
+    public void salvar(VotosVO votos) {
+        if (CollectionUtils.isNotEmpty(votos.getVotos())) {
+            for (VotoVO voto : votos.getVotos()) {
+                Questao questao = questaoDao.findOne(voto.getIdQuestao());
                 if (questao != null) {
                     for (Resposta resposta : questao.getRespostas()) {
                         if (resposta.getId().equals(voto.getIdResposta())) {
                             resposta.contabilizarVoto();
-                            questaoDao.save(questao);
+                            respostaDao.save(resposta);
+                            break;
                         }
                     }
                 }
