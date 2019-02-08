@@ -1,6 +1,6 @@
 package com.github.siilas.letusknow.vo;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.Getter;
@@ -14,7 +14,7 @@ public class VotosVO {
 
     public List<VotoVO> getVotos() {
         if (votos == null) {
-            votos = new ArrayList<>();
+            votos = Collections.emptyList();
         }
         return votos;
     }

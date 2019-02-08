@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import com.github.siilas.letusknow.vo.RespostaVO;
 
 import lombok.Data;
@@ -50,7 +52,7 @@ public class Resposta implements Serializable {
 
     public Long getVotos() {
         if (votos == null) {
-            votos = 0L;
+            votos = NumberUtils.LONG_ZERO;
         }
         return votos;
     }
@@ -64,7 +66,7 @@ public class Resposta implements Serializable {
     }
 
     public void contabilizarVoto() {
-        setVotos(getVotos() + 1L);
+        setVotos(getVotos() + NumberUtils.LONG_ONE);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.github.siilas.letusknow.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -43,7 +43,7 @@ public class Questao implements Serializable {
 
     public List<Resposta> getRespostas() {
         if (respostas == null) {
-            respostas = new ArrayList<>();
+            respostas = Collections.emptyList();
         }
         return respostas;
     }
@@ -52,7 +52,7 @@ public class Questao implements Serializable {
         var questao = new QuestaoVO();
         questao.setId(getId());
         questao.setDescricao(getDescricao());
-        for (Resposta resposta : getRespostas()) {
+        for (var resposta : getRespostas()) {
             questao.getRespostas().add(resposta.toVO());
         }
         return questao;

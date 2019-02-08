@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,13 +43,12 @@ public class QuestaoService {
                         model = new Resposta();
                         model.setDescricao(resposta);
                         model.setQuestao(questao);
-                        model.setVotos(0L);
+                        model.setVotos(NumberUtils.LONG_ZERO);
                         model.setQuestaoId(questao.getId());
                         respostaDao.save(model);
                     }
                 }
             }
-
         }
     }
 
@@ -64,16 +64,14 @@ public class QuestaoService {
 
     @Transactional
     public void salvar(VotosVO votos) {
-        if (CollectionUtils.isNotEmpty(votos.getVotos())) {
-            for (VotoVO voto : votos.getVotos()) {
-                var questao = questaoDao.findOne(voto.getIdQuestao());
-                if (questao != null) {
-                    for (var resposta : questao.getRespostas()) {
-                        if (resposta.getId().equals(voto.getIdResposta())) {
-                            resposta.contabilizarVoto();
-                            respostaDao.save(resposta);
-                            break;
-                        }
+        for (VotoVO voto : votos.getVotos()) {
+            var questao = questaoDao.findOne(voto.getIdQuestao());
+            if (questao != null) {
+                for (var resposta : questao.getRespostas()) {
+                    if (resposta.getId().equals(voto.getIdResposta())) {
+                        resposta.contabilizarVoto();
+                        respostaDao.save(resposta);
+                        break;
                     }
                 }
             }
