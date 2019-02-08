@@ -19,7 +19,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.github.siilas.letusknow.vo.RespostaVO;
 
 import lombok.Data;
-import lombok.experimental.var;
+import lombok.val;
 
 @Data
 @Entity
@@ -58,7 +58,7 @@ public class Resposta implements Serializable {
     }
 
     public RespostaVO toVO() {
-        var resposta = new RespostaVO();
+        val resposta = new RespostaVO();
         resposta.setId(getId());
         resposta.setDescricao(getDescricao());
         resposta.setVotos(getVotos());

@@ -1,13 +1,13 @@
 package com.github.siilas.letusknow.vo;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.github.siilas.letusknow.model.Questao;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.var;
+import lombok.val;
 
 @Getter
 @Setter
@@ -19,16 +19,16 @@ public class QuestaoVO {
 
     public List<RespostaVO> getRespostas() {
         if (respostas == null) {
-            respostas = Collections.emptyList();
+            respostas = new ArrayList<>();
         }
         return respostas;
     }
 
     public Questao toModel() {
-        var questao = new Questao();
+        val questao = new Questao();
         questao.setId(getId());
         questao.setDescricao(getDescricao());
-        for (var reposta : getRespostas()) {
+        for (val reposta : getRespostas()) {
             questao.getRespostas().add(reposta.toModel(getId()));
         }
         return questao;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.siilas.letusknow.dao.RespostaDao;
 import com.github.siilas.letusknow.vo.AjaxVO;
 
-import lombok.experimental.var;
+import lombok.val;
 
 @Controller
 @RequestMapping("/resposta")
@@ -22,7 +22,7 @@ public class RespostaController {
     @GetMapping("/excluir")
     public AjaxVO excluir(Long id) {
         respostaDao.delete(id);
-        var response = new AjaxVO();
+        val response = new AjaxVO();
         response.setMensagem("Resposta removida com sucesso!");
         return response;
     }

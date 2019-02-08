@@ -21,7 +21,7 @@ import com.github.siilas.letusknow.vo.QuestaoVO;
 import com.github.siilas.letusknow.vo.ResponseVO;
 import com.github.siilas.letusknow.vo.VotosVO;
 
-import lombok.experimental.var;
+import lombok.val;
 
 @RestController
 @RequestMapping("/ws/questoes")
@@ -35,9 +35,9 @@ public class QuestaoResource {
         return questaoService.buscarTodos();
     }
     
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<QuestaoVO> buscar(@PathVariable Long id) {
-        var questao = questaoService.buscarPorId(id);
+        val questao = questaoService.buscarPorId(id);
         if (questao == null) {
             return ResponseEntity.notFound().build();
         }
@@ -47,15 +47,15 @@ public class QuestaoResource {
     @PostMapping
     public ResponseVO salvar(@Valid @RequestBody VotosVO votos) {
         questaoService.salvar(votos);
-        var response = new ResponseVO();
+        val response = new ResponseVO();
         response.setSucesso(true);
         response.setMensagem("Questões salvas com sucesso!");
         return response;
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Questao> atualizar(@PathVariable Long id, @Valid @RequestBody Questao questao) {
-        var existente = questaoService.buscarPorId(id);
+        Questao existente = questaoService.buscarPorId(id);
         if (existente == null) {
             return ResponseEntity.notFound().build();
         }
@@ -63,9 +63,9 @@ public class QuestaoResource {
         return ResponseEntity.ok(existente);
     }
     
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        var questao = questaoService.buscarPorId(id);
+        val questao = questaoService.buscarPorId(id);
         if (questao == null) {
             return ResponseEntity.notFound().build();
         }

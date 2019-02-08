@@ -6,7 +6,7 @@ import com.github.siilas.letusknow.model.Resposta;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.var;
+import lombok.val;
 
 @Getter
 @Setter
@@ -24,7 +24,7 @@ public class RespostaVO {
     }
 
     public Resposta toModel(Long questaoId) {
-        var resposta = new Resposta();
+        val resposta = new Resposta();
         resposta.setId(getId());
         resposta.setDescricao(getDescricao());
         resposta.setVotos(getVotos());

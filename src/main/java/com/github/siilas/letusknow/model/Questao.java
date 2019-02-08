@@ -1,7 +1,7 @@
 package com.github.siilas.letusknow.model;
 
 import java.io.Serializable;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 import com.github.siilas.letusknow.vo.QuestaoVO;
 
 import lombok.Data;
-import lombok.experimental.var;
+import lombok.val;
 
 @Data
 @Entity
@@ -43,16 +43,16 @@ public class Questao implements Serializable {
 
     public List<Resposta> getRespostas() {
         if (respostas == null) {
-            respostas = Collections.emptyList();
+            respostas = new ArrayList<>();
         }
         return respostas;
     }
 
     public QuestaoVO toVO() {
-        var questao = new QuestaoVO();
+        val questao = new QuestaoVO();
         questao.setId(getId());
         questao.setDescricao(getDescricao());
-        for (var resposta : getRespostas()) {
+        for (val resposta : getRespostas()) {
             questao.getRespostas().add(resposta.toVO());
         }
         return questao;
