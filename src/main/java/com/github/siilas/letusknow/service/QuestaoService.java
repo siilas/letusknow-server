@@ -18,6 +18,8 @@ import com.github.siilas.letusknow.vo.QuestaoVO;
 import com.github.siilas.letusknow.vo.VotoVO;
 import com.github.siilas.letusknow.vo.VotosVO;
 
+import lombok.experimental.var;
+
 @Component
 public class QuestaoService {
 
@@ -28,14 +30,14 @@ public class QuestaoService {
     private RespostaDao respostaDao;
 
     public void criarSeNaoExistir(String descricao, List<String> respostas) {
-        Questao questao = questaoDao.findByDescricao(descricao);
+        var questao = questaoDao.findByDescricao(descricao);
         if (questao == null) {
             questao = new Questao();
             questao.setDescricao(descricao);
             questao = questaoDao.save(questao);
             if (CollectionUtils.isNotEmpty(respostas)) {
-                for (String resposta : respostas) {
-                    Resposta model = respostaDao.findByDescricao(resposta);
+                for (var resposta : respostas) {
+                    var model = respostaDao.findByDescricao(resposta);
                     if (model == null) {
                         model = new Resposta();
                         model.setDescricao(resposta);
@@ -66,9 +68,9 @@ public class QuestaoService {
     public void salvar(VotosVO votos) {
         if (CollectionUtils.isNotEmpty(votos.getVotos())) {
             for (VotoVO voto : votos.getVotos()) {
-                Questao questao = questaoDao.findOne(voto.getIdQuestao());
+                var questao = questaoDao.findOne(voto.getIdQuestao());
                 if (questao != null) {
-                    for (Resposta resposta : questao.getRespostas()) {
+                    for (var resposta : questao.getRespostas()) {
                         if (resposta.getId().equals(voto.getIdResposta())) {
                             resposta.contabilizarVoto();
                             respostaDao.save(resposta);

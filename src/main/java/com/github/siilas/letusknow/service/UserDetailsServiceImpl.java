@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.siilas.letusknow.dao.UsuarioDao;
-import com.github.siilas.letusknow.model.Usuario;
+
+import lombok.experimental.var;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -25,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioDao.findByNome(username);
+        var usuario = usuarioDao.findByNome(username);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         return new User(usuario.getNome(), usuario.getSenha(), grantedAuthorities);

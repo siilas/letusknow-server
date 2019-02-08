@@ -18,14 +18,11 @@ import javax.validation.constraints.Size;
 
 import com.github.siilas.letusknow.vo.QuestaoVO;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.experimental.var;
 
+@Data
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode
 @Table(name = "QUESTAO")
 public class Questao implements Serializable {
 
@@ -52,7 +49,7 @@ public class Questao implements Serializable {
     }
 
     public QuestaoVO toVO() {
-        QuestaoVO questao = new QuestaoVO();
+        var questao = new QuestaoVO();
         questao.setId(getId());
         questao.setDescricao(getDescricao());
         for (Resposta resposta : getRespostas()) {
