@@ -54,7 +54,7 @@ public class QuestaoResource {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Questao> atualizar(@PathVariable Long id, @RequestBody Questao questao) {
+    public ResponseEntity<Questao> atualizar(@PathVariable Long id, @Valid @RequestBody Questao questao) {
         var existente = questaoService.buscarPorId(id);
         if (existente == null) {
             return ResponseEntity.notFound().build();

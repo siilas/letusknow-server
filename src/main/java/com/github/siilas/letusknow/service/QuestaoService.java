@@ -54,9 +54,7 @@ public class QuestaoService {
 
     public List<QuestaoVO> buscarTodos() {
         List<QuestaoVO> response = new ArrayList<>();
-        for (Questao questao : questaoDao.findAll()) {
-            response.add(questao.toVO());
-        }
+        questaoDao.findAll().forEach(q -> response.add(q.toVO()));
         return response;
     }
     
