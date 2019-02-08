@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,6 +57,10 @@ public class QuestaoService {
         }
         return response;
     }
+    
+    public Questao buscarPorId(Long id) {
+        return questaoDao.findOne(id);
+    }
 
     @Transactional
     public void salvar(VotosVO votos) {
@@ -73,6 +78,15 @@ public class QuestaoService {
                 }
             }
         }
+    }
+
+    public void deletar(Questao questao) {
+        questaoDao.delete(questao);
+    }
+
+    public Questao atualizar(Questao questao, Questao existente) {
+        BeanUtils.copyProperties(questao, existente, "id");
+        return questaoDao.save(questao);
     }
 
 }
