@@ -1,6 +1,5 @@
 package com.github.siilas.letusknow.controller;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.siilas.letusknow.dao.QuestaoDao;
 import com.github.siilas.letusknow.model.Questao;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 @RequestMapping("/questao")
 public class QuestaoController {
-
-    private static final Logger LOGGER = Logger.getLogger(QuestaoController.class);
 
     @Autowired
     private QuestaoDao questaoDao;
@@ -54,7 +54,7 @@ public class QuestaoController {
             model.addAttribute("message", "Questão adicionada com sucesso!");
             return "redirect:/questao";
         } catch (Exception e) {
-            LOGGER.error("Erro ao adicionar questão", e);
+            log.error("Erro ao adicionar questão", e);
             model.addAttribute("message", "Erro ao adicionar questão!");
             return "questao/form";
         }

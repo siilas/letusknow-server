@@ -3,6 +3,11 @@ package com.github.siilas.letusknow.vo;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class VotosVO {
 
     private List<VotoVO> votos;
@@ -12,10 +17,6 @@ public class VotosVO {
             votos = new ArrayList<>();
         }
         return votos;
-    }
-
-    public void setVotos(List<VotoVO> votos) {
-        this.votos = votos;
     }
 
 }

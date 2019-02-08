@@ -1,6 +1,5 @@
 package com.github.siilas.letusknow.controller;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.github.siilas.letusknow.dao.UsuarioDao;
 import com.github.siilas.letusknow.model.Usuario;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
-
-    private static final Logger LOGGER = Logger.getLogger(UsuarioController.class);
 
     @Autowired
     private UsuarioDao usuarioDao;
@@ -59,7 +59,7 @@ public class UsuarioController {
             model.addAttribute("message", "Usuário adicionado com sucesso!");
             return "redirect:/usuario";
         } catch (Exception e) {
-            LOGGER.error("Erro ao adicionar usuário", e);
+            log.error("Erro ao adicionar usuário", e);
             model.addAttribute("message", "Erro ao adicionar usuário!");
             return "usuario/form";
         }

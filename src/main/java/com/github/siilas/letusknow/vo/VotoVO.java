@@ -1,24 +1,13 @@
 package com.github.siilas.letusknow.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class VotoVO {
 
     private Long idQuestao;
     private Long idResposta;
-
-    public Long getIdQuestao() {
-        return idQuestao;
-    }
-
-    public void setIdQuestao(Long idQuestao) {
-        this.idQuestao = idQuestao;
-    }
-
-    public Long getIdResposta() {
-        return idResposta;
-    }
-
-    public void setIdResposta(Long idResposta) {
-        this.idResposta = idResposta;
-    }
 
 }

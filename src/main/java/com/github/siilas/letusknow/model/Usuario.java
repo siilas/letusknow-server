@@ -11,10 +11,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
 @Table(name = "USUARIO")
 public class Usuario implements Serializable {
 
@@ -34,51 +38,5 @@ public class Usuario implements Serializable {
     @Size(max = 60)
     @Column(name = "SENHA", nullable = false)
     private String senha;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Usuario) {
-            Usuario other = (Usuario) obj;
-            return new EqualsBuilder()
-                    .append(id, other.id)
-                    .append(nome, other.nome)
-                    .append(senha, other.senha)
-                    .isEquals();
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder()
-                .append(id)
-                .append(nome)
-                .append(senha)
-                .toHashCode();
-    }
 
 }

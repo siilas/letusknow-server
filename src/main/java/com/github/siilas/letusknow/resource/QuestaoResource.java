@@ -22,7 +22,7 @@ import com.github.siilas.letusknow.vo.ResponseVO;
 import com.github.siilas.letusknow.vo.VotosVO;
 
 @RestController
-@RequestMapping("/questoes")
+@RequestMapping("/ws/questoes")
 public class QuestaoResource {
 
     @Autowired
